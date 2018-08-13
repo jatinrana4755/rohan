@@ -6,9 +6,13 @@ var  Schema = mongoose.Schema;
  */
 var TestSchema = new Schema({
 
-    title: {
+    testNo: {
         type: String,
         trim: true,
+    },
+    subject: {
+        type: String,
+        default:''
     },
     allowed_time: {
         type: String,

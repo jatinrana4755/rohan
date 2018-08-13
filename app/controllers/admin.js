@@ -52,9 +52,10 @@ module.exports.controller = function(app){
 	});
 
 	//route to save test
-	adminRouter.post('/save-test', verify, function(req, res){
+	adminRouter.post('/add-test',function(req, res){
 		var newTest = new testModel();
-		newTest.title = req.body.title;
+		newTest.testNo = req.body.testNo;
+		newTest.subject=req.body.subject
 		newTest.allowed_time = req.body.allowed_time;
 		newTest.save(function(err, test) {
 			if (err) {
@@ -180,7 +181,18 @@ module.exports.controller = function(app){
 		// 			return res.json({groupId:groupId, msg:"Group Updated Successfully"});
 		// 		}
 		// 	});	
-		// });	
+		// });
+		adminRouter.get('/view-group/:id', function(req, res){
+			groupModel.find({'_id':req.params.id}, function(err, view){
+			if (err) {
+					return res.status(400).send({
+						message: err
+					});
+				} else {
+					return res.json(view);
+				}
+			});
+		});	
 		adminRouter.post('/update-group/:id',function(req, res){
 		
 		
@@ -233,7 +245,7 @@ module.exports.controller = function(app){
 	});
 
 	//route to save question
-	adminRouter.post('/save-question/:id', verify, function(req, res){
+	adminRouter.post('/add-question/:id', function(req, res){
 		var newQuestion = new questionModel();
 		newQuestion.test = req.params.id;
 		newQuestion.question = req.body.question;

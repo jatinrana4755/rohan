@@ -23,6 +23,10 @@ var UserSchema = new Schema({
     type: String,
     trim: true
   },
+  city: {
+    type: String,
+   default:''
+  },
   hash_password: {
     type: String
   },

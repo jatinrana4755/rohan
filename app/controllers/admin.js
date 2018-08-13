@@ -6,6 +6,8 @@ var questionModel = mongoose.model('Question');
 var userModel = mongoose.model('User');
 var scoreModel = mongoose.model('Score');
 var groupModel = mongoose.model('Group');
+var subjectModel = mongoose.model('Subject');
+
 
 
 var bcrypt = require('bcrypt');
@@ -141,6 +143,32 @@ module.exports.controller = function(app){
 				}
 			});
 		});
+
+		adminRouter.post('/add-subject', function(req, res){
+			var addSubject= new subjectModel();
+		   addSubject.subjectName = req.body.subjectName;			
+			addSubject.save(function(err, subject) {
+			if (err) {
+					return res.status(400).send({
+						message: err
+					});
+				} else {
+					return res.json(subject);
+				}
+			});	
+		});
+		adminRouter.get('/get-subject',  function(req, res){
+			subjectModel.find({}, function(err, subject){
+			if (err) {
+					return res.status(400).send({
+						message: err
+					});
+				} else {
+					return res.json(subject);
+				}
+			});
+		});
+
 		// adminRouter.post('/update-group/:id',function(req, res){
 		// 	var updateGroup = req.body;
 		// 	testModel.update({'_id':req.params.id}, updateGroup, function(err, test){

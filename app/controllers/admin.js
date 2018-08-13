@@ -115,10 +115,9 @@ module.exports.controller = function(app){
 			addGroup.positive_marks = req.body.positive_marks;
 			addGroup.negative_marks = req.body.negative_marks;
 			addGroup.price = req.body.price;
-			
-			
-			
-			
+			addGroup.details_pdf = req.body. details_pdf;
+			addGroup.schedule_pdf = req.body.schedule_pdf;
+			addGroup.subject = req.body.subject;			
 			
 			
 			addGroup.save(function(err, group) {

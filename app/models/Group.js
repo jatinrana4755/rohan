@@ -52,6 +52,21 @@ let groupSchema = new Schema({
     default:0
   },
 
+  details_pdf:{
+    type: String,
+    default: ''
+  },
+  
+  schedule_pdf:{
+    type: String,
+    default: ''
+  },
+  
+  subject:{
+    type: String,
+    default: ''
+  },
+
   created: {
     type: Date,
     default: Date.now

@@ -142,6 +142,42 @@ module.exports.controller = function(app){
 				}
 			});
 		});
+		// adminRouter.post('/update-group/:id',function(req, res){
+		// 	var updateGroup = req.body;
+		// 	testModel.update({'_id':req.params.id}, updateGroup, function(err, test){
+		// 		if (err) {
+		// 			return res.status(400).send({
+		// 				message: err
+		// 			});
+		// 		} else {
+		// 			return res.json({groupId:groupId, msg:"Group Updated Successfully"});
+		// 		}
+		// 	});	
+		// });	
+		adminRouter.post('/update-group/:id',function(req, res){
+		
+		
+			
+			 let options = req.body;
+			 console.log(options);
+			 groupModel.update({ '_id': req.params.id }, options, { multi: true }).exec((err, result) => {
+		 
+				 if (err) {
+					 console.log(err)
+					 return res.status(400).send({
+						message: err
+									});
+					 
+				 } else {
+		 
+					
+					
+					 return res.json({ msg:"Group Updated Successfully"});
+		 
+				 }
+			 })
+			})
+		 
 
 	//route to get question based on id
 	adminRouter.get('/get-single-question/:id', verify, function(req, res){

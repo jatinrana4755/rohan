@@ -103,7 +103,7 @@ module.exports.controller = function(app){
 		});
 	});
 		//route to add  question
-		adminRouter.post('/add-group/:id', function(req, res){
+		adminRouter.post('/add-group', function(req, res){
 			var addGroup= new groupModel();
 			addGroup.groupId = req.params.id;
 			addGroup.groupName = req.body.groupName;
@@ -130,6 +130,17 @@ module.exports.controller = function(app){
 					return res.json(group);
 				}
 			});	
+		});
+		adminRouter.get('/get-all',  function(req, res){
+			groupModel.find({}, function(err, tests){
+			if (err) {
+					return res.status(400).send({
+						message: err
+					});
+				} else {
+					return res.json(tests);
+				}
+			});
 		});
 
 	//route to get question based on id

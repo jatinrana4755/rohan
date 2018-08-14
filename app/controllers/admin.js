@@ -82,7 +82,7 @@ module.exports.controller = function(app){
 	});
 
 	//route to get list of tests for admin panel 
-	adminRouter.get('/get-tests', verify, function(req, res){
+	adminRouter.get('/get-tests', function(req, res){
 		testModel.find({}, function(err, tests){
 		if (err) {
 				return res.status(400).send({
@@ -94,7 +94,7 @@ module.exports.controller = function(app){
 		});
 	});
 	//route to get test based on id
-	adminRouter.get('/get-single-test/:id', verify, function(req, res){
+	adminRouter.get('/get-single-test/:id', function(req, res){
 		testModel.find({'_id':req.params.id}, function(err, test){
 		if (err) {
 				return res.status(400).send({
